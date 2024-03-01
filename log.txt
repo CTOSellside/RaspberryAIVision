@@ -1,0 +1,202 @@
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Stream On
+Input #0, rawvideo, from 'pipe:':
+Input #0, rawvideo, from 'pipe:':
+Input #0, rawvideo, from 'pipe:':
+  Duration:   Duration:   Duration: N/AN/AN/A, bitrate: , bitrate: , bitrate: 188928 kb/s188928 kb/s188928 kb/s
+
+
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/sInput #0, rawvideo, from 'pipe:':
+
+  Duration: N/A, bitrate: 188928 kb/s
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, , 30 tbr, 30 tbr, 30 tbn, 30 tbn, 30 tbc30 tbc
+
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+[rtmp @ 0x55ae6b1750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x5584001750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x55aba4e750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x55a0e66750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x558f8bc750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+[rtmp @ 0x557b90e750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Stream mapping:
+Stream mapping:
+  Stream #0:0 -> #0:0  Stream #0:0 -> #0:0 (rawvideo (native) -> h264 (libx264)) (rawvideo (native) -> h264 (libx264))
+
+Seek to start failed.
+Seek to start failed.
+pipe:: Operation not permitted
+pipe:: Operation not permitted
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+[rtmp @ 0x558cef1750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+[rtmp @ 0x5581649750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x5580d3f750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+[rtmp @ 0x55afd1a750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, bitrate: 188928 kb/s
+    Stream #0:0: Video: rawvideo (BGR[24] / 0x18524742), bgr24, 640x410, 188928 kb/s, 30 tbr, 30 tbn, 30 tbc
+[rtmp @ 0x55a0e8f750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x557fc02750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x55a38df750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x55b2bf7750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x55a53b3750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x559518b750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x55961f3750] Server error: Already publishing
+[rtmp @ 0x55b8c6f750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x559b899750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x557c049750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[rtmp @ 0x558820e750] Server error: Already publishing
+[rtmp @ 0x55b9bf5750] Server error: Already publishing
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+rtmp://visionsinc.xyz/show/stream: Operation not permitted
+[libx264 @ 0x55c34f90d0] using cpu capabilities: ARMv8 NEON
+[libx264 @ 0x559911d0d0] using cpu capabilities: ARMv8 NEON
+[libx264 @ 0x55c34f90d0] profile Constrained Baseline, level 3.0, 4:2:0, 8-bit
+[libx264 @ 0x559911d0d0] profile Constrained Baseline, level 3.0, 4:2:0, 8-bit
+[libx264 @ 0x55c34f90d0] [libx264 @ 0x559911d0d0] 264 - core 160 r3011 cde9a93 - H.264/MPEG-4 AVC codec - Copyleft 2003-2020 - http://www.videolan.org/x264.html - options: cabac=0 ref=1 deblock=0:0:0 analyse=0:0 me=dia subme=0 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=0 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=4 lookahead_threads=4 sliced_threads=1 slices=4 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=0 weightp=0 keyint=1 keyint_min=1 scenecut=0 intra_refresh=0 rc=crf mbtree=0 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=0
+264 - core 160 r3011 cde9a93 - H.264/MPEG-4 AVC codec - Copyleft 2003-2020 - http://www.videolan.org/x264.html - options: cabac=0 ref=1 deblock=0:0:0 analyse=0:0 me=dia subme=0 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=0 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=4 lookahead_threads=4 sliced_threads=1 slices=4 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=0 weightp=0 keyint=1 keyint_min=1 scenecut=0 intra_refresh=0 rc=crf mbtree=0 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=0
+Output #0, flv, to 'rtmp://visionsinc.xyz/show/stream':
+Output #0, flv, to 'rtmp://visionsinc.xyz/show/stream':
+  Metadata:
+  Metadata:
+    encoder         :     encoder         : Lavf58.45.100Lavf58.45.100
+
+    Stream #0:0    Stream #0:0: Video: h264 (libx264) ([7][0][0][0] / 0x0007), yuv420p, 640x410, q=-1--1: Video: h264 (libx264) ([7][0][0][0] / 0x0007), yuv420p, 640x410, q=-1--1, , 30 fps, 30 fps, 1k tbn, 1k tbn, 30 tbc30 tbc
+
+    Metadata:
+    Metadata:
+      encoder         :       encoder         : Lavc58.91.100 libx264Lavc58.91.100 libx264
+
+    Side data:
+    Side data:
+            cpb: cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/Avbv_delay: N/A
+
+[flv @ 0x55c34f7bc0] Failed to update header with correct duration.
+[flv @ 0x559911bbc0] Failed to update header with correct duration.
+[flv @ 0x559911bbc0] Failed to update header with correct filesize.
+frame=    0 fps=0.0 q=0.0 Lsize=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    
+video:0kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+[flv @ 0x55c34f7bc0] Failed to update header with correct filesize.
+frame=    0 fps=0.0 q=0.0 Lsize=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    
+video:0kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+Stream mapping:
+  Stream #0:0 -> #0:0 (rawvideo (native) -> h264 (libx264))
+Seek to start failed.
+pipe:: Operation not permitted
+[libx264 @ 0x55a3cca0d0] using cpu capabilities: ARMv8 NEON
+[libx264 @ 0x55a3cca0d0] profile Constrained Baseline, level 3.0, 4:2:0, 8-bit
+[libx264 @ 0x55a3cca0d0] 264 - core 160 r3011 cde9a93 - H.264/MPEG-4 AVC codec - Copyleft 2003-2020 - http://www.videolan.org/x264.html - options: cabac=0 ref=1 deblock=0:0:0 analyse=0:0 me=dia subme=0 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=0 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=4 lookahead_threads=4 sliced_threads=1 slices=4 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=0 weightp=0 keyint=1 keyint_min=1 scenecut=0 intra_refresh=0 rc=crf mbtree=0 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=0
+Output #0, flv, to 'rtmp://visionsinc.xyz/show/stream':
+  Metadata:
+    encoder         : Lavf58.45.100
+    Stream #0:0: Video: h264 (libx264) ([7][0][0][0] / 0x0007), yuv420p, 640x410, q=-1--1, 30 fps, 1k tbn, 30 tbc
+    Metadata:
+      encoder         : Lavc58.91.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+[flv @ 0x55a3cc8bc0] Failed to update header with correct duration.
+[flv @ 0x55a3cc8bc0] Failed to update header with correct filesize.
+frame=    0 fps=0.0 q=0.0 Lsize=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    
+video:0kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
