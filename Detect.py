@@ -9,22 +9,33 @@ from tflite_support.task import vision
 import tflite_support
 import numpy as np
 import math
-from trackeable import TrackableObject
+from trackable import TrackableObject
 from datetime import datetime
 from upload import GoogleSheet
 
+# --- Configuration Constants ---
+VIDEO_SOURCE = 'TestVideo/TestVideo.mp4' # Or 0 for default camera
+MODEL_PATH = 'models/Dataset2000/custommodel00.tflite'
+MAX_RESULTS = 100
+SCORE_THRESHOLD = 0.35
+# Note: GoogleSheet related paths/IDs will be handled in upload.py adjustments
+
+# --- Global Variables ---
 counter, fps = 0, 0
 fps_avg_frame_count = 10
 start_time = time.time()
 
-cap = cv2.VideoCapture('TestVideo/TestVideo.mp4')#0)
+# --- Initialization ---
+cap = cv2.VideoCapture(VIDEO_SOURCE)
+# Fixed processing dimensions. May be required for the object detection model input size.
+# These override camera's native resolution for subsequent processing.
 width = 640#int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = 380#int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
-base_options = core.BaseOptions(file_name = 'models/Dataset2000/custommodel00.tflite')#'models/custommodel.tflite')
-detection_options = processor.DetectionOptions(max_results = 100, score_threshold = 0.35) ### cambiar
+base_options = core.BaseOptions(file_name=MODEL_PATH)
+detection_options = processor.DetectionOptions(max_results=MAX_RESULTS, score_threshold=SCORE_THRESHOLD)
 options = vision.ObjectDetectorOptions(base_options = base_options, detection_options = detection_options)
 detector = vision.ObjectDetector.create_from_options(options)
 
@@ -32,21 +43,28 @@ centerPointsPrevFrame = []
 trackingObjects = {}
 trackId = 0
 
+# ROI: Entry/Exit is determined by crossing this single line (0.50*width).
+# Direction of movement across this line distinguishes entry from exit.
 roi_position_entry = 0.50 #rigth
 roi_position_exit = 0.50 #left
 
-position = [0,0,0,0] #left, right, up, down;
+position = [0,0,0,0] #left, right, up, down; # Stores counts [exit, entry, up, down]
 trackableobject = {}
 Eje = True # x = True, y = False
 
 sheet = GoogleSheet()
-sheet.lengthLeftRigth()
+# sheet.lengthLeftRigth() # This method does not exist in GoogleSheet class
 while True:
+    # Simple trackId reset. In scenarios with many persistent objects or very long runs,
+    # this could lead to track ID collisions.
     if trackId > 99:
         trackId = 0
         trackableobject = {}
         
-    _, frame = cap.read()
+    ret, frame = cap.read()
+    if not ret:
+        print("Error: Could not read frame from video source in Detect.py. Exiting.")
+        break
     
     counter +=1
     objects = []
@@ -137,22 +155,22 @@ while True:
                     position[1] += 1
                     to.counted = True
                     now = datetime.now().strftime('%H:%M:%S')
-                    sheet.sendData('Entry', now)
-                    sheet.lenRight += 1
+                    sheet.sendData(datetime.now().strftime('%Y-%m-%d'), 'Entry', now)
+                    # sheet.lenRight += 1 # Redundant, position[1] is used for local count
                     
                 elif pt[0] < roi_position_exit*width and direction < 0 and np.mean(Xpos) > roi_position_exit*width:    
                 #elif pt[0] < roi_position_entry*width and direction < 0 and np.mean(Xpos) > roi_position_entry*width:
                     position[0] += 1
                     to.counted = True
                     now = datetime.now().strftime('%H:%M:%S')
-                    sheet.sendData('Exit', now)
-                    sheet.lenLeft += 1
+                    sheet.sendData(datetime.now().strftime('%Y-%m-%d'), 'Exit', now)
+                    # sheet.lenLeft += 1 # Redundant, position[0] is used for local count
                     
             to.centroids.append(pt)
         trackableobject[objectId] = to
         
         cv2.circle(frame, pt, 5, (0,255,0), -1)
-        cv2.putText(frame, str(objectId), (pt[0], pt[1] - 7),0, 1, (0, 0, 255), 2)
+        cv2.putText(frame, str(objectId), (pt[0], pt[1] - 7), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
     
     if counter % fps_avg_frame_count == 0:
         end_time = time.time()
@@ -163,7 +181,7 @@ while True:
     cv2.putText(frame, fps_text, (24,20), cv2.FONT_HERSHEY_PLAIN, 1, (255,255,255), 1)
     cv2.line(frame, (int(roi_position_entry*width), 0),(int(roi_position_entry*width), height), (255, 0, 0), 5)
     cv2.line(frame, (int(roi_position_exit*width), 0),(int(roi_position_exit*width), height), (0, 0, 255), 5)
-    cv2.putText(frame, f'Entrada:{sheet.lenRight}; Salida: {sheet.lenLeft}',(10,35), 2,1, (0, 0, 0), 2, cv2.FONT_HERSHEY_SIMPLEX )
+    cv2.putText(frame, f'Entrada:{position[1]}; Salida: {position[0]}',(10,35), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2)
 
     cv2.imshow('frame', frame)
     #cv2.imshow('rgb', rgb_image)

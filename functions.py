@@ -2,6 +2,8 @@ import cv2
 import time
 from threading import Thread
 
+# ... (other functions like maxZoom, ZoomKey, etc. will remain above) ...
+
 def maxZoom(cantZoom):
     maxX = (((cantZoom * 5) * 2) * 3)
     maxY = ((cantZoom * 5) * 5)
@@ -60,28 +62,50 @@ def DisplayZoom(frame, scale, x_offset, y_offset, width, height):
 
     return resized_cropped
 
+_alert_thread = None # Global variable to hold the thread instance
 
 class SendAlert(Thread):
     def __init__(self):
+        super().__init__() # Correct way to call Thread constructor
         self.status = True
-        self.time = 60 * 5
-        super().__init__()
+        # self.time = 60 * 5 # This attribute is not used by run() or timer()
+        
     def run(self):
         while self.status:
             self.timer()
-            time.sleep(300)
+            # It's important that time.sleep uses self.status for timely exit
+            # For example, sleep in smaller chunks or check status more often if sleep is long
+            for _ in range(300): # Sleep for 300 seconds (5 minutes) but check status every second
+                if not self.status:
+                    break
+                time.sleep(1)
+
     def stop(self):
+        print("Stopping alert thread...") # Add a print for feedback
         self.status = False
         
 class sendAlertTime(SendAlert):
     def timer(self):
-        print('send Alert')
-        
+        print('send Alert: Timer event occurred!') # Make message more specific
+
 def SendAlertStatus(Value):
-    send = sendAlertTime()
+    global _alert_thread
     if Value:
-        send.start()
-    else:
-        send.stop()
-        
-    
+        if _alert_thread is None or not _alert_thread.is_alive():
+            _alert_thread = sendAlertTime()
+            _alert_thread.start()
+            print("Alert thread started.")
+        else:
+            print("Alert thread already running.")
+    else: # Value is False
+        if _alert_thread is not None and _alert_thread.is_alive():
+            print("Attempting to stop alert thread...")
+            _alert_thread.stop()
+            _alert_thread.join(timeout=2) # Wait for thread to finish
+            if _alert_thread.is_alive():
+                print("Alert thread did not stop in time.")
+            else:
+                print("Alert thread stopped.")
+            _alert_thread = None # Clear the global var after stopping
+        else:
+            print("Alert thread not running or already stopped.")

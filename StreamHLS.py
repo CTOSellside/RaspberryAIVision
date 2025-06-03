@@ -12,15 +12,24 @@ from upload import GoogleSheet
 from functions import *
 from dataFirebase import FireData
 
+# --- Configuration Constants ---
+CAMERA_SOURCE_1 = 0 # Or "rtsp://192.168.4.16:8554/mjpeg/1"
+# CAMERA_SOURCE_2 = "rtsp://192.168.4.11:8554/mjpeg/1" # Example if used
+# CAMERA_SOURCE_3 = "rtsp://192.168.4.7:8554/mjpeg/1" # Example if used
+FFMPEG_RTMP_URL = 'rtmp://visionsinc.xyz/show/stream'
+# Note: Firebase related paths will be handled in dataFirebase.py adjustments
+
+# --- Global Variables ---
 counter, fps = 0, 0
 fps_avg_frame_count = 10
 start_time = time.time()
 
-width = 640#int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+# --- Initialization ---
+width = 640#int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)) # Consider making these constants if not dynamically determined
 height = 410#int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 #Camera 1
-cap1 = cv2.VideoCapture(0)#("rtsp://192.168.4.16:8554/mjpeg/1")
+cap1 = cv2.VideoCapture(CAMERA_SOURCE_1)#("rtsp://192.168.4.16:8554/mjpeg/1")
 cap1.set(cv2.CAP_PROP_FRAME_WIDTH, width)
 cap1.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
@@ -38,6 +47,8 @@ centerPointsPrevFrame = []
 trackingObjects = {}
 trackId = 0
 
+# ROI: Entry/Exit is determined by crossing this single line (0.5*width).
+# Direction of movement across this line would distinguish entry/exit if full detection logic were active here.
 roi_position_entry = 0.5 #rigth
 roi_position_exit = 0.5 #left
 
@@ -56,7 +67,8 @@ cantZoom = 0
 ## ENCENDER STREAM
 StreamOn = True
 stream_log = False
-proc = False
+# proc = False # Initialize proc to None for clearer checks
+proc = None 
 try_counted = 0
 cmd = [
     'ffmpeg',
@@ -68,14 +80,21 @@ cmd = [
     '-c:v', 'libx264',
     '-preset', 'ultrafast',
     '-tune', 'zerolatency',
-    '-b:v', '500k',  # Establecer la tasa de bits de video correctamente aquí
+    # TODO: Verify and adjust video bitrate ('500k' currently) for optimal stream quality and bandwidth usage.
+    '-b:v', '500k',
     '-g', '30',
     '-pix_fmt', 'yuv420p',
     '-f', 'flv',
-    'rtmp://visionsinc.xyz/show/stream'
+    FFMPEG_RTMP_URL
 ]
 
-proc = sp.Popen(cmd, stdin = sp.PIPE)
+try:
+    print("Initializing ffmpeg process...")
+    proc = sp.Popen(cmd, stdin=sp.PIPE)
+except Exception as e:
+    print(f"Failed to start initial ffmpeg process: {e}")
+    proc = None # Ensure proc is None if initial Popen fails
+
 ## RESET VALUE STREAMING
 FireData = FireData()
 FireData.start()
@@ -91,6 +110,8 @@ time_color = time.time()
 color = 0
 while True:
     
+    # Simple trackId reset. In scenarios with many persistent objects or very long runs,
+    # this could lead to track ID collisions. (Note: Full tracking logic not active in this script).
     if trackId > 100:
         trackId = 0
         trackableobject = {}
@@ -111,13 +132,13 @@ while True:
     key = cv2.waitKey(1)
     
     if not ret1: #or not ret2 or not ret3:
-        if not ret1:
-            print('Camara 1 no iniciada')
+        #if not ret1: # This inner check is redundant if we break
+        print("Error: Could not read frame from Camera 1 in StreamHLS.py. Exiting.")
         #if not ret2:
             #print('Camara 2 no iniciada')
         #if not ret3:
             #print('Camara 3 no iniciada')
-        #break
+        break # Exit the loop if frame reading fails
     
     counter +=1
     objects = []
@@ -171,22 +192,60 @@ while True:
     #cv2.imshow('frame 3', frame3)
     
     if StreamOn == True:
-        try:
-            if not stream_log:
-                print("Stream On")
-            proc.stdin.write(frame1.tobytes())
-            stream_log = True
-        except Exception as e:
-            proc = sp.Popen(cmd, stdin = sp.PIPE)
-    else:
+        if proc and proc.poll() is None: # Check if proc is alive
+            try:
+                if not stream_log:
+                    print("Stream On")
+                proc.stdin.write(frame1.tobytes())
+                stream_log = True
+            except Exception as e: # Typically BrokenPipeError if ffmpeg crashes
+                print(f"Error writing to ffmpeg stdin: {e}. Restarting ffmpeg.")
+                if proc and proc.poll() is None:
+                    print("Terminating existing ffmpeg process before restart...")
+                    proc.terminate()
+                    try:
+                        proc.wait(timeout=1) # Wait a bit for it to terminate
+                    except sp.TimeoutExpired:
+                        print("ffmpeg did not terminate in time, killing.")
+                        proc.kill() # Force kill if it doesn't terminate
+                print("Restarting ffmpeg process...")
+                try:
+                    proc = sp.Popen(cmd, stdin=sp.PIPE)
+                    stream_log = False # Reset stream_log as we just restarted
+                except Exception as popen_e:
+                    print(f"Failed to restart ffmpeg process: {popen_e}")
+                    proc = None # Set proc to None if restart fails
+        elif not proc or proc.poll() is not None: # If proc is dead or None, try to restart
+            print("ffmpeg process is not running. Attempting to start/restart.")
+            try:
+                proc = sp.Popen(cmd, stdin=sp.PIPE)
+                stream_log = False
+            except Exception as popen_e:
+                print(f"Failed to start/restart ffmpeg process: {popen_e}")
+                proc = None
+    else: # StreamOn is False
         if stream_log == True:
-            proc.terminate()
-            print('Stream Off')
+            if proc and proc.poll() is None: # Check if proc is alive
+                print('Stream Off - Terminating ffmpeg process...')
+                proc.terminate()
+                try:
+                    proc.wait(timeout=1)
+                except sp.TimeoutExpired:
+                    print("ffmpeg did not terminate in time on Stream Off, killing.")
+                    proc.kill()
+            else:
+                print('Stream Off - ffmpeg process already stopped or None.')
             stream_log = False
-    time.sleep(1/1000)
+    time.sleep(1/1000) # Consider increasing this if CPU usage is high
             
-if proc is not False:
+if proc and proc.poll() is None: # Check if proc is not None and is alive
+    print("Script ending - Terminating ffmpeg process...")
     proc.terminate()
+    try:
+        proc.wait(timeout=1)
+    except sp.TimeoutExpired:
+        print("ffmpeg did not terminate in time at script end, killing.")
+        proc.kill()
 cap1.release()
 #cap2.release()
 #cap3.release()
