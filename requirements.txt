@@ -3,5 +3,5 @@ tflite-support
 gspread
 google-api-python-client
 firebase-admin
-protobuf==4.25.8
+protobuf==5.29.6
 
